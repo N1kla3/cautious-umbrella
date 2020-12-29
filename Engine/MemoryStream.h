@@ -3,13 +3,11 @@
 //
 #pragma once
 
-#ifndef UNTITLED_MEMORYSTREAM_H
-#define UNTITLED_MEMORYSTREAM_H
-
 #include <cstdint>
 #include <cstdlib>
 #include <string>
 #include <cstring>
+#include <unordered_map>
 
 class GameObject;
 
@@ -26,8 +24,7 @@ inline float ConvertFromFixed(uint32_t inNumber, float inMin, float inPrecision)
 }
 
 
-class OutputMemoryBitStream
-{
+class OutputMemoryBitStream {
 
 public:
 
@@ -84,6 +81,8 @@ public:
         }
     }
 
+    void Write(const std::unordered_map<int, int>& map);
+
 private:
     void ReallocBuffer(uint32_t inNewBitCapacity);
 
@@ -92,8 +91,7 @@ private:
     uint32_t m_BitCapacity;
 };
 
-class InputMemoryBitStream
-{
+class InputMemoryBitStream {
 
 public:
 
@@ -109,7 +107,7 @@ public:
             m_IsBufferOwner(true) {
         //allocate buffer of right size
         int byteCount = m_BitCapacity / 8;
-        m_Buffer = static_cast< char * >( malloc(byteCount));
+        m_Buffer = static_cast<char*>( malloc(byteCount));
         //copy
         std::memcpy(m_Buffer, inOther.m_Buffer, byteCount);
     }
@@ -165,6 +163,27 @@ public:
         }
     }
 
+    void Read(std::unordered_map<int, int>& map);
+
+    template<typename tKey, typename tValue>
+    void Read(std::unordered_map<tKey, tValue>& map){
+        static_assert(std::is_arithmetic<tKey>::value ||
+                      std::is_enum<tKey>::value &&
+                      std::is_arithmetic<tValue>::value ||
+                      std::is_enum<tValue>::value,
+                      "Generic Read only supports primitive data types");
+        size_t size;
+        Read(size);
+        for (auto i = 0; i < size; i++)
+        {
+            tKey key;
+            tValue value;
+            Read<tKey>(key);
+            Read<tValue>(value);
+            map[key] = value;
+        }
+    }
+
     void Read(Vector3 &inVector);
 
 private:
@@ -174,5 +193,3 @@ private:
     bool m_IsBufferOwner;
 };
 
-
-#endif //UNTITLED_MEMORYSTREAM_H

@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.17)
 project(multi)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 add_subdirectory(googletest)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
@@ -14,11 +14,11 @@ set(SOURCE
 set(HEADER
         Engine/MemoryStream.h
         Engine/RoboMath.h
-        )
+        Engine/LinkingContext.hpp)
 
 set(TEST
         Tests/testRoboMath.cpp
-        )
+        Tests/testMemoryStream.cpp)
 
 add_executable(multi main.cpp ${SOURCE} ${HEADER})
 add_executable(tests ${TEST} ${SOURCE} ${HEADER})

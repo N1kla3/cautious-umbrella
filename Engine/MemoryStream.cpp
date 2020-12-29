@@ -35,7 +35,7 @@ void OutputMemoryBitStream::WriteBits(uint8_t inData, uint32_t inBitCount) {
 }
 
 void OutputMemoryBitStream::WriteBits(const void *inData, uint32_t inBitCount) {
-    const char *srcByte = static_cast< const char * >( inData );
+    const char *srcByte = static_cast<const char *>( inData );
     //write all the bytes
     while (inBitCount > 8) {
         WriteBits(*srcByte, 8);
@@ -88,13 +88,15 @@ void OutputMemoryBitStream::ReallocBuffer(uint32_t inNewBitLength) {
     m_BitCapacity = inNewBitLength;
 }
 
-
-void test1() {
-    OutputMemoryBitStream mbs;
-
-    mbs.WriteBits(11, 5);
-    mbs.WriteBits(52, 6);
+void OutputMemoryBitStream::Write(const std::unordered_map<int, int> &map) {
+    Write(map.size());
+    for (auto & [key, value] : map)
+    {
+        Write(key);
+        Write(value);
+    }
 }
+
 
 void InputMemoryBitStream::ReadBits(uint8_t &outData, uint32_t inBitCount) {
     uint32_t byteOffset = m_BitHead >> 3;
@@ -149,5 +151,16 @@ void InputMemoryBitStream::Read(Quaternion &outQuat) {
 
     if (isNegative) {
         outQuat.mW *= -1;
+    }
+}
+
+void InputMemoryBitStream::Read(std::unordered_map<int, int> &map) {
+    size_t size;
+    Read(size);
+    for (auto i = 0; i < size; i++)
+    {
+        int key, value;
+        Read(key);Read(value);
+        map[key] = value;
     }
 }

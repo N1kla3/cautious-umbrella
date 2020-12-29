@@ -25,6 +25,27 @@ public:
         mZ = z;
     }
 
+    friend bool operator==(const Vector3& left, const Vector3& right){
+        if (left.mX == right.mX
+            && left.mY == right.mY
+            && left.mZ == right.mZ)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    friend bool operator!=(const Vector3& left, const Vector3& right)
+    {
+        if (left.mX != right.mX
+            && left.mY != right.mY
+            && left.mZ != right.mZ)
+        {
+            return true;
+        }
+        return false;
+    }
+
     friend Vector3 operator+(const Vector3 &inLeft, const Vector3 &inRight) {
         return Vector3(inLeft.mX + inRight.mX, inLeft.mY + inRight.mY, inLeft.mZ + inRight.mZ);
     }
