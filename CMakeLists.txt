@@ -15,11 +15,13 @@ set(HEADER
         Engine/MemoryStream.h
         Engine/RoboMath.h
         Engine/LinkingContext.hpp
-        Engine/GameObject.h)
+        Engine/GameObject.h Engine/ObjectCreationRegistry.hpp)
 
 set(TEST
         Tests/testRoboMath.cpp
-        Tests/testMemoryStream.cpp Tests/testLinkingContext.cpp)
+        Tests/testMemoryStream.cpp
+        Tests/testLinkingContext.cpp
+        Tests/testCreationRegistry.cpp)
 
 add_executable(multi main.cpp ${SOURCE} ${HEADER})
 add_executable(tests ${TEST} ${SOURCE} ${HEADER})
