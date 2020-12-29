@@ -9,11 +9,12 @@ class LinkingContext {
 public:
 
     LinkingContext() :
-            m_NextNetworkId(1) {
+            m_NextNetworkId(1)
+    {
 
     }
 
-    uint32_t GetNetworkId(GameObject *inGameObject, bool inShouldCreateIfNotFound) {
+    uint32_t GetNetworkId(GameObject *inGameObject, bool inShouldCreateIfNotFound = true) {
         auto it = m_GameObjectToNetworkIdMap.find(inGameObject);
         if (it != m_GameObjectToNetworkIdMap.end()) {
             return it->second;
