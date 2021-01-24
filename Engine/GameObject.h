@@ -4,6 +4,7 @@
 #pragma once
 
 #include <cstdint>
+#include "MemoryStream.h"
 
 #define CLASS_IDENTIFICATION(Code, Class) \
 enum{ClassId = Code};                     \
@@ -13,5 +14,7 @@ static GameObject* CreateInstance() {return new Class();}
 class GameObject {
 public:
     CLASS_IDENTIFICATION('GOBJ', GameObject)
+
+    virtual void Write(OutputMemoryBitStream& inStream);
 };
 

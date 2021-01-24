@@ -3,3 +3,7 @@
 //
 
 #include "GameObject.h"
+
+void GameObject::Write(OutputMemoryBitStream &inStream) {
+
+}

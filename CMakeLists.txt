@@ -9,19 +9,26 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 set(SOURCE
         Engine/MemoryStream.cpp
         Engine/RoboMath.cpp
-        Engine/GameObject.cpp)
+        Engine/GameObject.cpp
+        Engine/ReplicationManager.cpp
+        )
 
 set(HEADER
         Engine/MemoryStream.h
         Engine/RoboMath.h
         Engine/LinkingContext.hpp
-        Engine/GameObject.h Engine/ObjectCreationRegistry.hpp)
+        Engine/GameObject.h
+        Engine/ObjectCreationRegistry.hpp
+        Engine/ReplicationManager.h
+        )
 
 set(TEST
         Tests/testRoboMath.cpp
         Tests/testMemoryStream.cpp
         Tests/testLinkingContext.cpp
-        Tests/testCreationRegistry.cpp)
+        Tests/testCreationRegistry.cpp
+        Tests/testReplicationManager.cpp
+        )
 
 add_executable(multi main.cpp ${SOURCE} ${HEADER})
 add_executable(tests ${TEST} ${SOURCE} ${HEADER})
