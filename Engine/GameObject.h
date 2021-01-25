@@ -16,5 +16,7 @@ public:
     CLASS_IDENTIFICATION('GOBJ', GameObject)
 
     virtual void Write(OutputMemoryBitStream& inStream);
+
+    virtual void Read(InputMemoryBitStream& outStream);
 };
 

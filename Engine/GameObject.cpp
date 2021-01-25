@@ -5,5 +5,9 @@
 #include "GameObject.h"
 
 void GameObject::Write(OutputMemoryBitStream &inStream) {
+//TODO: write later
+}
 
+void GameObject::Read(InputMemoryBitStream &outStream) {
+//TODO: read later
 }

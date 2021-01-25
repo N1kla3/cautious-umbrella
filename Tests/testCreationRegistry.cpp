@@ -3,7 +3,6 @@
 //
 #include "gtest/gtest.h"
 #include "../Engine/ObjectCreationRegistry.hpp"
-#include "../Engine/GameObject.h"
 
 TEST(CreationRegistry, initilization){
     ObjectCreationRegistry::Get();

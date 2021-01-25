@@ -3,6 +3,7 @@
 //
 #pragma once
 
+#include <cassert>
 #include "GameObject.h"
 
 typedef GameObject* (*GameObjectCreationFunc)();
@@ -32,9 +33,9 @@ public:
         }
         return nullptr;
     }
-
+//TODO: remove singleton
 private:
-    ObjectCreationRegistry(){}
+    ObjectCreationRegistry()= default;
     std::unordered_map<uint32_t, GameObjectCreationFunc> m_NameToGameObjectCreationFunctionMap;
 };
 
