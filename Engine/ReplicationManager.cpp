@@ -7,6 +7,7 @@
 #include "LinkingContext.hpp"
 #include "MemoryStream.h"
 #include "RoboMath.h"
+#include "ReplicationHeader.h"
 
 void ReplicationManager::ReplicateWorldState(OutputMemoryBitStream &inStream, const std::vector<GameObject *> &allObjects) {
     inStream.WriteBits(PT_REPLICATIONDATA, GetRequiredBits<PT_MAX>::Value);
@@ -60,4 +61,21 @@ GameObject *ReplicationManager::ReceiveReplicatedObject(InputMemoryBitStream &st
     go->Read(stream);
 
     return go;
+}
+
+void ReplicationManager::ReplicateCreate(OutputMemoryBitStream &stream, GameObject *gameObject) {
+    ReplicationHeader header(RA_CREATE, m_LinkingContext->GetNetworkId(gameObject), gameObject->GetClassId());
+    header.Write(stream);
+    gameObject->Write(stream);
+}
+
+void ReplicationManager::ReplicateDestroy(OutputMemoryBitStream &stream, GameObject *gameObject) {
+    ReplicationHeader header(RA_DESTROY, m_LinkingContext->GetNetworkId(gameObject, false), gameObject->GetClassId());
+    header.Write(stream);
+}
+
+void ReplicationManager::ReplicateUpdate(OutputMemoryBitStream &stream, GameObject *gameObject) {
+    ReplicationHeader header(RA_UPDATE, m_LinkingContext->GetNetworkId(gameObject, false), gameObject->GetClassId());
+    header.Write(stream);
+    gameObject->Write(stream);
 }

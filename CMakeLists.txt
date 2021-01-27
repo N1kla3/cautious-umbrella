@@ -11,6 +11,7 @@ set(SOURCE
         Engine/RoboMath.cpp
         Engine/GameObject.cpp
         Engine/ReplicationManager.cpp
+        Engine/ReplicationHeader.cpp
         )
 
 set(HEADER
@@ -20,6 +21,7 @@ set(HEADER
         Engine/GameObject.h
         Engine/ObjectCreationRegistry.h
         Engine/ReplicationManager.h
+        Engine/ReplicationHeader.h
         )
 
 set(TEST

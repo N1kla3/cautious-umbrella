@@ -31,6 +31,10 @@ public:
 
     void ReceiveReplicatedWorld(InputMemoryBitStream& outStream);
 
+    void ReplicateCreate(OutputMemoryBitStream& stream, GameObject* gameObject);
+    void ReplicateDestroy(OutputMemoryBitStream& stream, GameObject* gameObject);
+    void ReplicateUpdate(OutputMemoryBitStream& stream, GameObject* gameObject);
+
 private:
     void ReplicateIntoStream(OutputMemoryBitStream& stream, GameObject* gameObject);
 
