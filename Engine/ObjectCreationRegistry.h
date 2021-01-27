@@ -10,11 +10,7 @@ typedef GameObject* (*GameObjectCreationFunc)();
 
 class ObjectCreationRegistry {
 public:
-    static ObjectCreationRegistry& Get()
-    {
-        static ObjectCreationRegistry sInstance;
-        return sInstance;
-    }
+    ObjectCreationRegistry()= default;
 
     template<class T>
     void RegisterCreationFunction()
@@ -33,14 +29,15 @@ public:
         }
         return nullptr;
     }
-//TODO: remove singleton
+
+    void RegisterObjectCreation()
+    {
+        RegisterCreationFunction<GameObject>();
+    }
+
 private:
-    ObjectCreationRegistry()= default;
     std::unordered_map<uint32_t, GameObjectCreationFunc> m_NameToGameObjectCreationFunctionMap;
 };
 
-void RegisterObjectCreation()
-{
-    ObjectCreationRegistry::Get().RegisterCreationFunction<GameObject>();
-}
+
 

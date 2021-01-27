@@ -2,7 +2,7 @@
 // Created by nicola on 05/01/2021.
 //
 
-#include "ObjectCreationRegistry.hpp"
+#include "ObjectCreationRegistry.h"
 #include "ReplicationManager.h"
 #include "LinkingContext.hpp"
 #include "MemoryStream.h"
@@ -28,7 +28,7 @@ void ReplicationManager::ReceiveReplicatedWorld(InputMemoryBitStream& outStream)
 
     while (outStream.GetRemainingBitCount() > 0)
     {
-        auto received_object = ReceiveReplicatedObject(outStream);
+        auto received_object = ReceiveReplicatedObject(outStream, nullptr);
         received_objects.insert(received_object);
     }
 
@@ -44,8 +44,8 @@ void ReplicationManager::ReceiveReplicatedWorld(InputMemoryBitStream& outStream)
     m_ObjectReplicatedToMe = received_objects;
 }
 
-GameObject *ReplicationManager::ReceiveReplicatedObject(InputMemoryBitStream &stream) {
-   /* uint32_t network_id;
+GameObject *ReplicationManager::ReceiveReplicatedObject(InputMemoryBitStream &stream, ObjectCreationRegistry* registry) {
+    uint32_t network_id;
     uint32_t class_id;
     stream.Read(network_id);
     stream.Read(class_id);
@@ -53,12 +53,11 @@ GameObject *ReplicationManager::ReceiveReplicatedObject(InputMemoryBitStream &st
     auto go = m_LinkingContext->GetGameObject(network_id);
     if (!go)
     {
-        go = ObjectCreationRegistry::Get().CreateGameObject(class_id);
+        go = registry->CreateGameObject(class_id);
         m_LinkingContext->AddGameObject(go, network_id);
     }
 
     go->Read(stream);
 
     return go;
-    */
 }

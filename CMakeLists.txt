@@ -18,7 +18,7 @@ set(HEADER
         Engine/RoboMath.h
         Engine/LinkingContext.hpp
         Engine/GameObject.h
-        Engine/ObjectCreationRegistry.hpp
+        Engine/ObjectCreationRegistry.h
         Engine/ReplicationManager.h
         )
 

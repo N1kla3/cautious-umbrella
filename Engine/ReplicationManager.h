@@ -21,6 +21,12 @@ enum PacketType
 
 class ReplicationManager {
 public:
+    explicit ReplicationManager(LinkingContext *link_context) :
+            m_LinkingContext(link_context)
+    {
+
+    }
+
     void ReplicateWorldState(OutputMemoryBitStream& inStream, const std::vector<GameObject*>& allObjects);
 
     void ReceiveReplicatedWorld(InputMemoryBitStream& outStream);
@@ -28,10 +34,10 @@ public:
 private:
     void ReplicateIntoStream(OutputMemoryBitStream& stream, GameObject* gameObject);
 
-    GameObject* ReceiveReplicatedObject(InputMemoryBitStream& stream);
+    GameObject *ReceiveReplicatedObject(InputMemoryBitStream &stream, class ObjectCreationRegistry * registry);
 
     LinkingContext* m_LinkingContext;
 
-    std::unordered_set<GameObject*> m_ObjectReplicatedToMe;
+    std::unordered_set<GameObject*> m_ObjectReplicatedToMe{};
 };
 

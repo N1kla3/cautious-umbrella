@@ -2,13 +2,13 @@
 // Created by nicola on 29/12/2020.
 //
 #include "gtest/gtest.h"
-#include "../Engine/ObjectCreationRegistry.hpp"
+#include "../Engine/ObjectCreationRegistry.h"
 
 TEST(CreationRegistry, initilization){
-    ObjectCreationRegistry::Get();
-    RegisterObjectCreation();
-    auto obj = ObjectCreationRegistry::Get().CreateGameObject('GOBJ');
-    auto objnul = ObjectCreationRegistry::Get().CreateGameObject('asdg');
+    ObjectCreationRegistry registr;
+    registr.RegisterObjectCreation();
+    auto obj = registr.CreateGameObject('GOBJ');
+    auto objnul = registr.CreateGameObject('asdg');
     EXPECT_TRUE(obj);
     EXPECT_FALSE(objnul);
 }
