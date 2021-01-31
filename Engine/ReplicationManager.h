@@ -35,6 +35,7 @@ public:
     void ReplicateDestroy(OutputMemoryBitStream& stream, GameObject* gameObject);
     void ReplicateUpdate(OutputMemoryBitStream& stream, GameObject* gameObject);
 
+    void ProcessReplicationData(InputMemoryBitStream& stream, class ObjectCreationRegistry* registry);
 private:
     void ReplicateIntoStream(OutputMemoryBitStream& stream, GameObject* gameObject);
 

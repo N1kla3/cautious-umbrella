@@ -79,3 +79,48 @@ void ReplicationManager::ReplicateUpdate(OutputMemoryBitStream &stream, GameObje
     header.Write(stream);
     gameObject->Write(stream);
 }
+
+void ReplicationManager::ProcessReplicationData(InputMemoryBitStream &stream, ObjectCreationRegistry* registry) {
+    ReplicationHeader header{};
+    header.Read(stream);
+
+    switch (header.m_ReplicatedAction) {
+        case RA_UPDATE:
+        {
+            auto go = m_LinkingContext->GetGameObject(header.m_NetworkID);
+            if (go)
+            {
+                go->Read(stream);
+            }
+            else
+            {
+                auto class_id = header.m_ClassID;
+                go = registry->CreateGameObject(class_id);
+                go->Read(stream);
+                delete go;
+            }
+            break;
+        }
+
+        case RA_CREATE:
+        {
+            auto go = registry->CreateGameObject(header.m_ClassID);
+            m_LinkingContext->AddGameObject(go, header.m_NetworkID);
+            go->Read(stream);
+            break;
+        }
+
+        case RA_DESTROY:
+        {
+            auto go = m_LinkingContext->GetGameObject(header.m_NetworkID);
+            m_LinkingContext->RemoveGameObject(go);
+            delete go; //TODO for now
+            break;
+        }
+
+        default:
+        {
+            break;
+        }
+    }
+}

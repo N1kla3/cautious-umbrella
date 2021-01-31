@@ -27,7 +27,7 @@ public:
 
     void Write(class OutputMemoryBitStream& stream);
     void Read(class InputMemoryBitStream& stream);
-private:
+
     ReplicatedAction m_ReplicatedAction;
     uint32_t m_NetworkID;
     uint32_t m_ClassID;

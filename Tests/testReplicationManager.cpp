@@ -19,3 +19,8 @@ TEST(ReplicationManager, worldstate)
     manager.ReplicateWorldState(outStream, {first, second});
     //TODO need to think
 }
+
+TEST(ReplicationManager, repHeader)
+{
+
+}
