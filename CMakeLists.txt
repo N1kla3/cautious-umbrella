@@ -12,6 +12,7 @@ set(SOURCE
         Engine/GameObject.cpp
         Engine/ReplicationManager.cpp
         Engine/ReplicationHeader.cpp
+        Engine/MouseStatus.cpp
         )
 
 set(HEADER
@@ -22,6 +23,7 @@ set(HEADER
         Engine/ObjectCreationRegistry.h
         Engine/ReplicationManager.h
         Engine/ReplicationHeader.h
+        Engine/MouseStatus.h
         )
 
 set(TEST
