@@ -5,6 +5,7 @@
 #include "../Engine/ReplicationManager.h"
 #include "../Engine/LinkingContext.hpp"
 #include "../Engine/GameObject.h"
+#include "../Engine/RPCManager.h"
 
 TEST(ReplicationManager, worldstate)
 {
@@ -23,4 +24,16 @@ TEST(ReplicationManager, worldstate)
 TEST(ReplicationManager, repHeader)
 {
 
+}
+
+void UnwrapFunction(InputMemoryBitStream& stream)
+{
+    std::cout << "hell0";
+}
+
+TEST(ReplicationManager, RPCmanager)
+{
+    RPCManager manager;
+    manager.RegisterUnwrapFunction('PSND', UnwrapFunction);
+    //TODO write mock for streams for good tests
 }
