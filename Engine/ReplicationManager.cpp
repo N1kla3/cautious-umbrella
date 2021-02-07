@@ -24,12 +24,12 @@ void ReplicationManager::ReplicateIntoStream(OutputMemoryBitStream &stream, Game
     gameObject->Write(stream);
 }
 
-void ReplicationManager::ReceiveReplicatedWorld(InputMemoryBitStream& outStream) {
+void ReplicationManager::ReceiveReplicatedWorld(InputMemoryBitStream& outStream, ObjectCreationRegistry* registry) {
     std::unordered_set<GameObject*> received_objects;
 
     while (outStream.GetRemainingBitCount() > 0)
     {
-        auto received_object = ReceiveReplicatedObject(outStream, nullptr);
+        auto received_object = ReceiveReplicatedObject(outStream, registry);
         received_objects.insert(received_object);
     }
 

@@ -36,7 +36,7 @@ public:
     }
 
 private:
-    std::unordered_map<uint32_t, GameObjectCreationFunc> m_NameToGameObjectCreationFunctionMap;
+    std::unordered_map<uint32_t, GameObjectCreationFunc> m_NameToGameObjectCreationFunctionMap{};
 };
 
 

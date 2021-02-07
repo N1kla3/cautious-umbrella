@@ -33,7 +33,6 @@ set(TEST
         Tests/testMemoryStream.cpp
         Tests/testLinkingContext.cpp
         Tests/testCreationRegistry.cpp
-        Tests/testReplicationManager.cpp
         )
 
 add_executable(multi main.cpp ${SOURCE} ${HEADER})

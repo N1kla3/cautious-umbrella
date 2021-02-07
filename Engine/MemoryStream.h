@@ -83,7 +83,7 @@ public:
 
     void Write(const std::unordered_map<int, int>& map);
 
-private:
+protected:
     void ReallocBuffer(uint32_t inNewBitCapacity);
 
     char *m_Buffer;
@@ -186,7 +186,7 @@ public:
 
     void Read(Vector3 &inVector);
 
-private:
+protected:
     char *m_Buffer;
     uint32_t m_BitHead;
     uint32_t m_BitCapacity;

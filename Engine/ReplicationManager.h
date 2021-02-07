@@ -29,7 +29,7 @@ public:
 
     void ReplicateWorldState(OutputMemoryBitStream& inStream, const std::vector<GameObject*>& allObjects);
 
-    void ReceiveReplicatedWorld(InputMemoryBitStream& outStream);
+    void ReceiveReplicatedWorld(InputMemoryBitStream& outStream, class ObjectCreationRegistry* registry);
 
     void ReplicateCreate(OutputMemoryBitStream& stream, GameObject* gameObject);
     void ReplicateDestroy(OutputMemoryBitStream& stream, GameObject* gameObject);
