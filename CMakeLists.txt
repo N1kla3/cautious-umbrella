@@ -14,6 +14,7 @@ set(SOURCE
         Engine/ReplicationHeader.cpp
         Engine/MouseStatus.cpp
         Engine/RPCManager.cpp
+        Engine/Timing.cpp
         )
 
 set(HEADER
@@ -26,6 +27,7 @@ set(HEADER
         Engine/ReplicationHeader.h
         Engine/MouseStatus.h
         Engine/RPCManager.h
+        Engine/Timing.h
         )
 
 set(TEST
