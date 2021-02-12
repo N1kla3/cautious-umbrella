@@ -15,6 +15,7 @@ set(SOURCE
         Engine/MouseStatus.cpp
         Engine/RPCManager.cpp
         Engine/Timing.cpp
+        Engine/InputState.cpp
         )
 
 set(HEADER
@@ -28,6 +29,7 @@ set(HEADER
         Engine/MouseStatus.h
         Engine/RPCManager.h
         Engine/Timing.h
+        Engine/InputState.h
         )
 
 set(TEST
