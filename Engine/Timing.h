@@ -20,6 +20,8 @@ public:
 
     float GetFrameStartTime() const;
 
+    static Timing instance;
+
 private:
     float m_DeltaTime;
     uint64_t m_DeltaTick;

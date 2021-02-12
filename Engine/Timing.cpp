@@ -3,15 +3,57 @@
 //
 
 #include "Timing.h"
+#include "chrono"
 
-Timing::Timing() {}
+using namespace std::chrono;
 
-void Timing::Update() {}
+constexpr float DesiredFrameTime = 0.0166f;
 
-float Timing::GetDeltaTime() const { return 1; }
+Timing Timing::instance;
 
-double Timing::GetTime() const { return 0; }
+namespace
+{
+    high_resolution_clock::time_point StartTime;
+}
 
-float Timing::GetTimef() const { return 0; }
+Timing::Timing()
+{
+    ::StartTime = high_resolution_clock::now();
+}
 
-float Timing::GetFrameStartTime() const { return 0; }
+void Timing::Update()
+{
+    double current_time = GetTime();
+    m_DeltaTime = (float) (current_time - m_LastFrameStartTime);
+
+    while (m_DeltaTime < DesiredFrameTime)
+    {
+        current_time = GetTime();
+        m_DeltaTime = (float)(current_time - m_LastFrameStartTime);
+    }
+
+    m_LastFrameStartTime = current_time;
+    m_FrameStartTimef = static_cast<float>(m_LastFrameStartTime);
+}
+
+float Timing::GetDeltaTime() const
+{
+    return m_DeltaTime;
+}
+
+double Timing::GetTime() const
+{
+    auto now = high_resolution_clock::now();
+    auto ms = duration_cast<milliseconds>(now - StartTime).count();
+    return static_cast<double>(ms) / 1000;
+}
+
+float Timing::GetTimef() const
+{
+    return (float)GetTime();
+}
+
+float Timing::GetFrameStartTime() const
+{
+    return m_FrameStartTimef;
+}
