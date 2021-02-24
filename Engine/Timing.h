@@ -12,13 +12,13 @@ public:
 
     void Update();
 
-    float GetDeltaTime() const;
+    [[nodiscard]] float GetDeltaTime() const;
 
-    double GetTime() const;
+    [[nodiscard]] double GetTime() const;
 
-    float GetTimef() const;
+    [[nodiscard]] float GetTimef() const;
 
-    float GetFrameStartTime() const;
+    [[nodiscard]] float GetFrameStartTime() const;
 
     static Timing instance;
 

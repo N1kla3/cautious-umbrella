@@ -45,9 +45,9 @@ public:
     }
 
     void RemoveGameObject(GameObject *inGameObject) {
-        uint32_t networkId = m_GameObjectToNetworkIdMap[inGameObject];
+        uint32_t network_id = m_GameObjectToNetworkIdMap[inGameObject];
         m_GameObjectToNetworkIdMap.erase(inGameObject);
-        m_NetworkIdToGameObjectMap.erase(networkId);
+        m_NetworkIdToGameObjectMap.erase(network_id);
     }
 
 private:

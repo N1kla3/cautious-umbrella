@@ -7,7 +7,7 @@
 
 using namespace std::chrono;
 
-constexpr float DesiredFrameTime = 0.0166f;
+constexpr float DESIRED_FRAME_TIME = 0.0166f;
 
 Timing Timing::instance;
 
@@ -26,7 +26,7 @@ void Timing::Update()
     double current_time = GetTime();
     m_DeltaTime = (float) (current_time - m_LastFrameStartTime);
 
-    while (m_DeltaTime < DesiredFrameTime)
+    while (m_DeltaTime < DESIRED_FRAME_TIME)
     {
         current_time = GetTime();
         m_DeltaTime = (float)(current_time - m_LastFrameStartTime);

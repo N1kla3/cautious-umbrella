@@ -17,10 +17,10 @@ enum ReplicatedAction
 class ReplicationHeader {
 public:
     ReplicationHeader() = default;
-    ReplicationHeader(ReplicatedAction action, uint32_t network_id, uint32_t class_id) :
+    ReplicationHeader(ReplicatedAction action, uint32_t networkId, uint32_t classId) :
             m_ReplicatedAction(action),
-            m_NetworkID(network_id),
-            m_ClassID(class_id)
+            m_NetworkID(networkId),
+            m_ClassID(classId)
     {
 
     }
